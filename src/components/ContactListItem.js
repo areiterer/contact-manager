@@ -1,5 +1,7 @@
 import React from "react";
 
-const ContactListItem = props => <div>{props.name}</div>;
+const ContactListItem = props => (
+  <div className="contact-list-item">{props.name}</div>
+);
 
 export default ContactListItem;
