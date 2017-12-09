@@ -4,7 +4,7 @@ import ContactListItem from "./ContactListItem";
 
 const ContactList = props => {
   return (
-    <div>
+    <div className="contact-list">
       {props.contacts.map(contact => <ContactListItem name={contact.name} />)}
     </div>
   );
