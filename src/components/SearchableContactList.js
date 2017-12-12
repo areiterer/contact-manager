@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import ContactList from "../components/ContactList";
+import ContactList from "./ContactList";
 
 class SearchableContactList extends Component {
   constructor(props) {
