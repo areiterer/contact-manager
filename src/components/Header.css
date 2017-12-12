@@ -1,3 +1,12 @@
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
 nav ul li {
   display: block;
+}
+
+nav ul li a {
+  text-decoration: none;
 }
