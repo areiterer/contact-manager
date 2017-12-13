@@ -9,7 +9,6 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  text-align: center;
   color: #fff;
   display: block;
   padding: 10px;
@@ -32,5 +31,7 @@ nav a:hover {
   .brand {
     display: block;
     margin-right: auto;
+    padding: 10px;
+    color: #fff;
   }
 }
