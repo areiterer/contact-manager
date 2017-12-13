@@ -1,3 +1,4 @@
 .contact-list {
+  flex: 1 0 200px;
   padding: 5px;
 }

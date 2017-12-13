@@ -1,5 +1,17 @@
+header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+#root {
+  padding: 36px 0;
+}
+
 nav {
   background: #333;
+  height: 36px;
 }
 
 nav ul {
