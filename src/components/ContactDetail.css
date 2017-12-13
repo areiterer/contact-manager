@@ -1,3 +1,8 @@
 .contactDetail {
   padding: 10px;
+  flex: 1 1 100%;
+}
+
+.label {
+  font-weight: bold;
 }
