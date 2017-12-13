@@ -1,12 +1,36 @@
+nav {
+  background: #333;
+}
+
 nav ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
 }
 
-nav ul li {
+nav a {
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
   display: block;
+  padding: 10px;
 }
 
-nav ul li a {
-  text-decoration: none;
+nav a:hover {
+  background-color: #444;
+}
+
+.brand {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  nav ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .brand {
+    display: block;
+    margin-right: auto;
+  }
 }
