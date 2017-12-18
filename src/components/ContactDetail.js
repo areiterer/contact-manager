@@ -10,12 +10,18 @@ const ContactDetail = props => {
       <h1>
         {contact.firstName} {contact.lastName}
       </h1>
-      <p>
-        {contact.street} {contact.house} <br />
-        {contact.zip} {contact.city}
-      </p>
-      <p>{contact.phone}</p>
-      <p>{contact.email}</p>
+      <div id="address">
+        <p>
+          {contact.street} {contact.house} <br />
+          {contact.zip} {contact.city}
+        </p>
+      </div>
+      <div className="contactInfo">
+        <p>{contact.phone}</p>
+      </div>
+      <div className="contactInfo">
+        <p>{contact.email}</p>
+      </div>
     </div>
   );
 };
