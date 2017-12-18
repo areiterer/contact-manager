@@ -2,6 +2,16 @@
   padding: 15px;
   margin: 5px;
   color: #247ba0;
-  border: 1px solid #247ba0;
-  background: #247ba022;
+  border: 1px solid #bbb;
+  background: #cccccc55;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.activeLink {
+  font-weight: bold;
+  font-size: 1.1em;
 }

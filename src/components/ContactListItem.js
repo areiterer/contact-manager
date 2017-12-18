@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./ContactListItem.css";
 
 const ContactListItem = props => {
   const contact = props.contact;
   return (
     <div className="contact-list-item">
-      <Link to={`/contacts/${contact.id}`}>
+      <NavLink to={`/contacts/${contact.id}`} activeClassName="activeLink">
         {`${contact.firstName} ${contact.lastName}`}
-      </Link>
+      </NavLink>
     </div>
   );
 };
