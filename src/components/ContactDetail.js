@@ -7,18 +7,15 @@ const ContactDetail = props => {
 
   return (
     <div className="contactDetail">
+      <h1>
+        {contact.firstName} {contact.lastName}
+      </h1>
       <p>
-        <span className="label">First name: </span>
-        <span className="value">{contact.firstName}</span>
+        {contact.street} {contact.house} <br />
+        {contact.zip} {contact.city}
       </p>
-      <p>
-        <span className="label">Last name: </span>
-        <span className="value">{contact.lastName}</span>
-      </p>
-      <p>
-        <span className="label">Email: </span>
-        <span className="value">{contact.email}</span>
-      </p>
+      <p>{contact.phone}</p>
+      <p>{contact.email}</p>
     </div>
   );
 };
