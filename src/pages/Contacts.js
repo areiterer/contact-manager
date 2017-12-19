@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import axios from "axios";
 
 import "./Contacts.css";
 
@@ -9,32 +11,64 @@ class Contacts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: [],
-      selectedContact: null
+      contacts: []
     };
-
-    this.handleContactSelected = this.handleContactSelected.bind(this);
+    this.handleContactSaved = this.handleContactSaved.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/contacts")
-      .then(result => result.json())
-      .then(data => this.setState({ contacts: data }));
+    axios
+      .get("http://localhost:8000/contacts")
+      .then(response => this.setState({ contacts: response.data }));
   }
 
-  handleContactSelected(contactId) {
-    this.setState({ selectedContact: contactId });
+  handleContactSaved(contact) {
+    // TODO: PUT if contact.id exists - otherwise POST
+    if (contact.id) {
+      return axios
+        .put(`http://localhost:8000/contacts/${contact.id}`, contact)
+        .then(response => {
+          const otherContacts = this.state.contacts.filter(
+            c => c.id !== contact.id
+          );
+          this.setState({ contacts: [...otherContacts, response.data] });
+        });
+    } else {
+      return axios
+        .post(`http://localhost:8000/contacts`, contact)
+        .then(response => {
+          const otherContacts = this.state.contacts.filter(c => c !== contact);
+          this.setState({ contacts: [...otherContacts, response.data] });
+        });
+    }
   }
 
   render() {
-    const selectedContactId = this.props.match.params.id;
-    const selectedContact = this.state.contacts.find(
-      c => c.id === selectedContactId
-    );
+    const match = this.props.match;
+
     return (
       <div className="contacts">
         <ContactList contacts={this.state.contacts} />
-        {selectedContact && <ContactDetail contact={selectedContact} />}
+
+        <Route
+          path={`${match.url}/:id`}
+          render={props => (
+            <ContactDetail
+              data={this.state.contacts}
+              onSaveContact={this.handleContactSaved}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={match.url}
+          render={() => (
+            <div>
+              <p>Please select a contact.</p>
+            </div>
+          )}
+        />
       </div>
     );
   }
