@@ -5,7 +5,8 @@
 #contactForm input {
   font-size: 1.1rem;
   margin: 2px;
-  padding: 5px;
+  padding: 7px;
+  width: 300px;
 }
 
 .section {
