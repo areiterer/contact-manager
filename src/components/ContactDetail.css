@@ -1,39 +1,14 @@
-.contactDetail {
+#contactDetail {
   flex: 1 1 100%;
+  padding: 20px 20px;
+}
 
+.toolbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
 }
 
-#info {
-  flex: 1 1 50%;
-  padding: 20px;
-}
-
-#notes {
-  flex: 1 1 50%;
-  padding: 20px;
-  border-top: 2px solid #ddd;
-}
-
-h1 {
-  margin-bottom: 30px;
-  color: #333;
-}
-
-p {
-  color: #444;
-}
-
-#address {
-  margin: 20px;
-  font-size: 1.1rem;
-}
-
-#address p {
-  line-height: 1.5rem;
-}
-
-.contactInfo {
-  margin: 5px 5px 5px 20px;
+.toolbar button {
+  padding: 10px;
+  margin: 2px;
 }

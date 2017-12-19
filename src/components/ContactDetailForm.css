@@ -1,0 +1,13 @@
+#contactForm h2 {
+  line-height: 3rem;
+}
+
+#contactForm input {
+  font-size: 1.1rem;
+  margin: 2px;
+  padding: 5px;
+}
+
+.section {
+  margin-bottom: 30px;
+}

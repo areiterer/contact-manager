@@ -1,0 +1,21 @@
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+p {
+  color: #444;
+}
+
+#address {
+  margin: 20px;
+  font-size: 1.1rem;
+}
+
+#address p {
+  line-height: 1.5rem;
+}
+
+.contactInfo {
+  margin: 5px 5px 5px 20px;
+}
