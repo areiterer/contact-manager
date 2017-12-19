@@ -6,12 +6,11 @@ header {
 }
 
 #root {
-  padding: 36px 0 0 0;
+  padding: 38px 0 0 0;
 }
 
 nav {
   background: #333;
-  height: 36px;
 }
 
 nav ul {
@@ -43,7 +42,6 @@ nav a:hover {
   .brand {
     display: block;
     margin-right: auto;
-    padding: 10px;
     color: #fff;
   }
 }
