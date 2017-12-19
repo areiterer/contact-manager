@@ -41,7 +41,7 @@ class ContactDetail extends Component {
     const selectedContact = this.props.data.find(
       c => c.id === selectedContactId
     );
-    console.log(selectedContact);
+
     if (selectedContact) {
       return (
         <div id="contactDetail">

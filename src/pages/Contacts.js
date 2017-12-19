@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import axios from "axios";
+
+import * as api from "../api";
 
 import "./Contacts.css";
 
@@ -17,29 +18,25 @@ class Contacts extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:8000/contacts")
+    api
+      .getContacts()
       .then(response => this.setState({ contacts: response.data }));
   }
 
   handleContactSaved(contact) {
     // TODO: PUT if contact.id exists - otherwise POST
     if (contact.id) {
-      return axios
-        .put(`http://localhost:8000/contacts/${contact.id}`, contact)
-        .then(response => {
-          const otherContacts = this.state.contacts.filter(
-            c => c.id !== contact.id
-          );
-          this.setState({ contacts: [...otherContacts, response.data] });
-        });
+      api.updateContact(contact).then(response => {
+        const otherContacts = this.state.contacts.filter(
+          c => c.id !== contact.id
+        );
+        this.setState({ contacts: [...otherContacts, response.data] });
+      });
     } else {
-      return axios
-        .post(`http://localhost:8000/contacts`, contact)
-        .then(response => {
-          const otherContacts = this.state.contacts.filter(c => c !== contact);
-          this.setState({ contacts: [...otherContacts, response.data] });
-        });
+      api.createContact(contact).then(response => {
+        const otherContacts = this.state.contacts.filter(c => c !== contact);
+        this.setState({ contacts: [...otherContacts, response.data] });
+      });
     }
   }
 

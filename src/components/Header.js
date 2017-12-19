@@ -10,6 +10,9 @@ const Header = () => (
         <li className="brand">
           <Link to="/">ContactManager</Link>
         </li>
+        <li id="newContactLink">
+          <Link to="/new-contact">+ New Contact</Link>
+        </li>
         <li>
           <Link to="/">Home</Link>
         </li>

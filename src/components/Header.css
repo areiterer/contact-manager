@@ -33,6 +33,10 @@ nav a:hover {
   display: none;
 }
 
+#newContactLink {
+  background-color: green;
+}
+
 @media screen and (min-width: 768px) {
   nav ul {
     display: flex;
