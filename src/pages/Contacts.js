@@ -49,14 +49,21 @@ class Contacts extends Component {
 
         <Route
           path={`${match.url}/:id`}
-          render={props => (
-            <ContactDetail
-              data={this.state.contacts}
-              onSaveContact={this.handleContactSaved}
-              {...props}
-            />
-          )}
+          render={props => {
+            const selectedContact = this.state.contacts.find(
+              c => c.id === props.match.params.id
+            );
+
+            return (
+              <ContactDetail
+                contact={selectedContact}
+                onSaveContact={this.handleContactSaved}
+                {...props}
+              />
+            );
+          }}
         />
+
         <Route
           exact
           path={match.url}

@@ -37,10 +37,7 @@ class ContactDetail extends Component {
   }
 
   render() {
-    const selectedContactId = this.props.match.params.id;
-    const selectedContact = this.props.data.find(
-      c => c.id === selectedContactId
-    );
+    const selectedContact = this.props.contact;
 
     if (selectedContact) {
       return (
