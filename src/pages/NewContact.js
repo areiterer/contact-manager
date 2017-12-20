@@ -20,8 +20,10 @@ class NewContact extends Component {
     this.props.history.push("/contacts");
   }
 
-  onSaveChanges(newContact) {
-    api.createContact(newContact);
+  onSaveChanges(contact) {
+    api.createContact(contact).then(response => {
+      this.props.history.push("/contacts");
+    });
   }
 
   render() {
