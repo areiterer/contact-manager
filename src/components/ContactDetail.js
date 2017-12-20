@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ContactDetail.css";
 
-import ContactDetailForm from "./ContactDetailForm";
+import ContactEditForm from "./ContactEditForm";
 import ContactDetailView from "./ContactDetailView";
 
 class ContactDetail extends Component {
@@ -43,7 +43,7 @@ class ContactDetail extends Component {
       return (
         <div id="contactDetail">
           {this.state.isEditing ? (
-            <ContactDetailForm
+            <ContactEditForm
               contact={selectedContact}
               onCancel={this.onCancelEdit}
               onSave={this.onSaveChanges}

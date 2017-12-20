@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import "./ContactDetailForm.css";
+import "./ContactEditForm.css";
 
-class ContactDetailForm extends Component {
+class ContactEditForm extends Component {
   constructor(props) {
     super(props);
 
@@ -183,4 +183,4 @@ class ContactDetailForm extends Component {
   }
 }
 
-export default ContactDetailForm;
+export default ContactEditForm;

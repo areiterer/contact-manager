@@ -5,7 +5,7 @@ import * as api from "../api";
 
 import "./NewContact.css";
 
-import ContactDetailForm from "../components/ContactDetailForm";
+import ContactEditForm from "../components/ContactEditForm";
 
 class NewContact extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class NewContact extends Component {
 
     return (
       <div id="newContact">
-        <ContactDetailForm
+        <ContactEditForm
           contact={newContact}
           onCancel={this.onCancelEdit}
           onSave={this.onSaveChanges}
