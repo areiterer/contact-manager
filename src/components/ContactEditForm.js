@@ -18,9 +18,6 @@ class ContactEditForm extends Component {
         city: ""
       }
     };
-
-    this.handleSave = this.handleSave.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount() {
@@ -33,20 +30,14 @@ class ContactEditForm extends Component {
     });
   }
 
-  handleSave(e) {
-    this.props.onSave(this.state.currentContact);
-  }
-
-  handleCancel() {
-    this.props.onCancel();
-  }
-
   render() {
     return (
       <div>
         <div className="toolbar">
-          <button onClick={this.handleCancel}>Cancel</button>
-          <button onClick={this.handleSave}>Save</button>
+          <button onClick={this.props.onCancel}>Cancel</button>
+          <button onClick={() => this.props.onSave(this.state.currentContact)}>
+            Save
+          </button>
         </div>
         <form id="contactForm">
           <div className="section">
