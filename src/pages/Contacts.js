@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import { withRouter } from "react-router";
 
 import * as api from "../api";
 
@@ -37,11 +38,12 @@ class Contacts extends Component {
   }
 
   handleDeleteContact(id) {
-    api.deleteContact(id).then(() =>
+    api.deleteContact(id).then(() => {
       this.setState({
         contacts: this.state.contacts.filter(c => c.id !== id)
-      })
-    );
+      });
+      this.props.history.push("/contacts");
+    });
   }
 
   handleCancelEdit() {
@@ -106,7 +108,7 @@ class Contacts extends Component {
     } else {
       return (
         <div>
-          <p>Loading ... </p>
+          <p>Contact not found</p>
         </div>
       );
     }
@@ -137,4 +139,6 @@ class Contacts extends Component {
   }
 }
 
-export default Contacts;
+const ContactsWithRouter = withRouter(Contacts);
+
+export default ContactsWithRouter;
