@@ -12,9 +12,13 @@ class Contacts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: []
+      contacts: [],
+      editedContact: null
     };
-    this.handleContactSaved = this.handleContactSaved.bind(this);
+
+    this.handleSaveContact = this.handleSaveContact.bind(this);
+    this.handleEditContact = this.handleEditContact.bind(this);
+    this.handleCancelEdit = this.handleCancelEdit.bind(this);
   }
 
   componentDidMount() {
@@ -23,19 +27,33 @@ class Contacts extends Component {
       .then(response => this.setState({ contacts: response.data }));
   }
 
-  handleContactSaved(contact) {
+  handleEditContact(contact) {
+    this.setState({ editedContact: contact.id });
+  }
+
+  handleCancelEdit() {
+    this.setState({ editedContact: null });
+  }
+
+  handleSaveContact(contact) {
     // TODO: PUT if contact.id exists - otherwise POST
     if (contact.id) {
       api.updateContact(contact).then(response => {
         const otherContacts = this.state.contacts.filter(
           c => c.id !== contact.id
         );
-        this.setState({ contacts: [...otherContacts, response.data] });
+        this.setState({
+          contacts: [...otherContacts, response.data],
+          editedContact: null
+        });
       });
     } else {
       api.createContact(contact).then(response => {
         const otherContacts = this.state.contacts.filter(c => c !== contact);
-        this.setState({ contacts: [...otherContacts, response.data] });
+        this.setState({
+          contacts: [...otherContacts, response.data],
+          editedContact: null
+        });
       });
     }
   }
@@ -56,8 +74,11 @@ class Contacts extends Component {
 
             return (
               <ContactDetail
+                editing={this.state.editedContact}
                 contact={selectedContact}
-                onSaveContact={this.handleContactSaved}
+                onCancelEdit={this.handleCancelEdit}
+                onEditContact={this.handleEditContact}
+                onSaveContact={this.handleSaveContact}
                 {...props}
               />
             );

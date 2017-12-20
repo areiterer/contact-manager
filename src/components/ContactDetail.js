@@ -11,10 +11,6 @@ class ContactDetail extends Component {
     this.state = {
       isEditing: false
     };
-
-    this.onSaveChanges = this.onSaveChanges.bind(this);
-    this.onCancelEdit = this.onCancelEdit.bind(this);
-    this.onEdit = this.onEdit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,32 +20,23 @@ class ContactDetail extends Component {
     }
   }
 
-  onEdit() {
-    this.setState({ isEditing: true });
-  }
-
-  onSaveChanges(contact) {
-    this.props.onSaveContact(contact).then(this.setState({ isEditing: false }));
-  }
-
-  onCancelEdit() {
-    this.setState({ isEditing: false });
-  }
-
   render() {
     const selectedContact = this.props.contact;
 
     if (selectedContact) {
       return (
         <div id="contactDetail">
-          {this.state.isEditing ? (
+          {this.props.editing ? (
             <ContactEditForm
               contact={selectedContact}
-              onCancel={this.onCancelEdit}
-              onSave={this.onSaveChanges}
+              onCancel={this.props.onCancelEdit}
+              onSave={this.props.onSaveContact}
             />
           ) : (
-            <ContactDetailView onEdit={this.onEdit} contact={selectedContact} />
+            <ContactDetailView
+              onEdit={this.props.onEditContact}
+              contact={selectedContact}
+            />
           )}
         </div>
       );

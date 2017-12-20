@@ -7,7 +7,7 @@ const ContactDetailView = props => {
   return (
     <div id="detailView">
       <div className="toolbar">
-        <button onClick={props.onEdit}>Edit</button>
+        <button onClick={() => props.onEdit(contact)}>Edit</button>
       </div>
       <h1>
         {contact.firstName} {contact.lastName}
