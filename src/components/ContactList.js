@@ -4,16 +4,21 @@ import "./ContactList.css";
 
 import ContactListItem from "./ContactListItem";
 
-const ContactList = props => (
-  <div className="contact-list">
-    {props.contacts.length > 0 ? (
-      props.contacts.map(contact => (
-        <ContactListItem key={contact.id} contact={contact} />
-      ))
-    ) : (
+const ContactList = ({ contacts }) => {
+  if (contacts.length === 0) {
+    return;
+    <div className="contact-list">
       <p>No contacts found</p>
-    )}
-  </div>
-);
+    </div>;
+  } else {
+    return (
+      <div className="contact-list">
+        {props.contacts.map(contact => (
+          <ContactListItem key={contact.id} contact={contact} />
+        ))}
+      </div>
+    );
+  }
+};
 
 export default ContactList;

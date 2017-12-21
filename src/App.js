@@ -7,7 +7,6 @@ import * as api from "./api";
 import "./App.css";
 
 import Header from "./components/Header";
-
 import Home from "./pages/Home";
 import Contacts from "./pages/Contacts";
 import NewContact from "./pages/NewContact";
@@ -105,6 +104,7 @@ class App extends Component {
                 />
               )}
             />
+
             <Route
               path="/new-contact"
               render={props => (
