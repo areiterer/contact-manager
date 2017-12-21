@@ -21,8 +21,9 @@ npm start
 
 ## Roadmap
 
-There are still a lot of things to be fixed here.
+There are still a lot of things to be fixed and added here:
 
 * [ ] Improve Component / State design
+* [ ] prop-types
 * [ ] Tests are missing
 * [ ] ...
