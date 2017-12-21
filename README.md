@@ -11,10 +11,13 @@ This is a React demo project that contains a bunch of functionality that you'll 
 ## How to test
 
 * If you want to test it, please be sure to have the [contact-manager-backend](https://github.com/areiterer/contact-manager-backend) running.
-* git clone https://github.com/areiterer/contact-manager
-* cd contact-manager
-* npm install
-* npm start
+
+```
+git clone https://github.com/areiterer/contact-manager
+cd contact-manager
+npm install
+npm start
+```
 
 ## Roadmap
 
