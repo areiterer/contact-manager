@@ -1,106 +1,57 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { withRouter } from "react-router";
-
-import * as api from "../api";
 
 import "./Contacts.css";
 
 import ContactList from "../components/ContactList";
-
 import ContactEditForm from "../components/ContactEditForm";
 import ContactDetailView from "../components/ContactDetailView";
 
 class Contacts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contacts: [],
-      editedContact: null
-    };
+  render() {
+    const match = this.props.match;
 
-    this.renderContactDetails = this.renderContactDetails.bind(this);
+    return (
+      <div className="contacts">
+        <ContactList contacts={this.props.data} />
 
-    this.handleSaveContact = this.handleSaveContact.bind(this);
-    this.handleEditContact = this.handleEditContact.bind(this);
-    this.handleCancelEdit = this.handleCancelEdit.bind(this);
-    this.handleDeleteContact = this.handleDeleteContact.bind(this);
+        <Route
+          path={`${match.url}/:id`}
+          render={props => this.renderContactDetails(props)}
+        />
+        <Route
+          exact
+          path={match.url}
+          render={() => (
+            <div id="contactDetail">
+              <p>Please select a contact.</p>
+            </div>
+          )}
+        />
+      </div>
+    );
   }
 
-  componentDidMount() {
-    api
-      .getContacts()
-      .then(response => this.setState({ contacts: response.data }));
-  }
-
-  handleEditContact(contact) {
-    this.setState({ editedContact: contact.id });
-  }
-
-  handleDeleteContact(id) {
-    api.deleteContact(id).then(() => {
-      this.setState({
-        contacts: this.state.contacts.filter(c => c.id !== id)
-      });
-      this.props.history.push("/contacts");
-    });
-  }
-
-  handleCancelEdit() {
-    this.setState({ editedContact: null });
-  }
-
-  handleSaveContact(contact) {
-    // TODO: PUT if contact.id exists - otherwise POST
-    if (contact.id) {
-      this.updateContact(contact);
-    } else {
-      this.createNewContact(contact);
-    }
-  }
-
-  updateContact(contact) {
-    api.updateContact(contact).then(response => {
-      const otherContacts = this.state.contacts.filter(
-        c => c.id !== contact.id
-      );
-      this.setState({
-        contacts: [...otherContacts, response.data],
-        editedContact: null
-      });
-    });
-  }
-
-  createNewContact(contact) {
-    api.createContact(contact).then(response => {
-      const otherContacts = this.state.contacts.filter(c => c !== contact);
-      this.setState({
-        contacts: [...otherContacts, response.data],
-        editedContact: null
-      });
-    });
-  }
-
-  renderContactDetails(props) {
+  renderContactDetails(routeProps) {
     // get selected contact by the id that was passed in the URL
-    const selectedContact = this.state.contacts.find(
-      c => c.id === props.match.params.id
+    const selectedContact = this.props.data.find(
+      c => c.id === routeProps.match.params.id
     );
 
     if (selectedContact) {
       return (
         <div id="contactDetail">
-          {this.state.editedContact ? (
+          {this.props.editedContact ? (
             <ContactEditForm
               contact={selectedContact}
-              onCancel={this.handleCancelEdit}
-              onSave={this.handleSaveContact}
+              onCancel={this.props.cancelEdit}
+              onSave={this.props.saveContact}
             />
           ) : (
             <ContactDetailView
               contact={selectedContact}
-              onEdit={this.handleEditContact}
-              onDelete={this.handleDeleteContact}
+              onEdit={this.props.editContact}
+              onDelete={this.props.deleteContact}
             />
           )}
         </div>
@@ -113,32 +64,6 @@ class Contacts extends Component {
       );
     }
   }
-
-  render() {
-    const match = this.props.match;
-
-    return (
-      <div className="contacts">
-        <ContactList contacts={this.state.contacts} />
-
-        <Route
-          path={`${match.url}/:id`}
-          render={props => this.renderContactDetails(props)}
-        />
-        <Route
-          exact
-          path={match.url}
-          render={() => (
-            <div>
-              <p>Please select a contact.</p>
-            </div>
-          )}
-        />
-      </div>
-    );
-  }
 }
 
-const ContactsWithRouter = withRouter(Contacts);
-
-export default ContactsWithRouter;
+export default Contacts;
