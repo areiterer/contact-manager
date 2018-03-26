@@ -13,7 +13,7 @@ const ContactList = ({ contacts }) => {
   } else {
     return (
       <div className="contact-list">
-        {props.contacts.map(contact => (
+        {contacts.map(contact => (
           <ContactListItem key={contact.id} contact={contact} />
         ))}
       </div>
