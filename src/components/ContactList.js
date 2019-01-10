@@ -6,10 +6,11 @@ import ContactListItem from "./ContactListItem";
 
 const ContactList = ({ contacts }) => {
   if (contacts.length === 0) {
-    return;
-    <div className="contact-list">
-      <p>No contacts found</p>
-    </div>;
+    return (
+      <div className="contact-list">
+        <p>No contacts found</p>
+      </div>
+    );
   } else {
     return (
       <div className="contact-list">
